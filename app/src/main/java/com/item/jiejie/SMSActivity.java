@@ -1,9 +1,12 @@
 package com.item.jiejie;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -63,7 +66,7 @@ public class SMSActivity extends AppCompatActivity implements TextWatcher {
                             // 获取验证码成功
                             Toast.makeText(activity, "验证码发送成功", Toast.LENGTH_SHORT).show();
                             activity.countDownTimer.start(); // 发送成功，开启倒计时
-                          //  activity.setSmsContentObserver(); // 发送成功了，要开始读取短信了
+                            activity.setSmsPermission(); // 发送成功了，要开始读取短信了
                         }
                     } else {
                         // 报错了
@@ -91,7 +94,27 @@ public class SMSActivity extends AppCompatActivity implements TextWatcher {
             smsContentObserver = new SMSContentObserver(SMSActivity.this, myHandler);
             getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, smsContentObserver);
         }
+    }
 
+    /**
+     * 动态权限
+     */
+    private void setSmsPermission() {
+        if (ToastUtils.hasPermission(this, Manifest.permission.READ_SMS)) {
+            setSmsContentObserver();
+        } else {
+            ToastUtils.requestPermission(this, 0x01, Manifest.permission.READ_SMS);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0x01) {
+            if ((grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                setSmsContentObserver();
+            }
+        }
     }
 
     @Override
