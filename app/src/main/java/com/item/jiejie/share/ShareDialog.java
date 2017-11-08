@@ -26,7 +26,7 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 
 /**
  * 这是分享弹窗
- * Created by Administrator on 2017/8/8.
+ * Created by Administrator on 2017/11/7.
  */
 
 public class ShareDialog extends Dialog implements View.OnClickListener {

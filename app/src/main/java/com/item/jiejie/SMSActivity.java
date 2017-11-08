@@ -92,8 +92,8 @@ public class SMSActivity extends AppCompatActivity implements TextWatcher {
     private void setSmsContentObserver() {
         if (smsContentObserver == null) {
             smsContentObserver = new SMSContentObserver(SMSActivity.this, myHandler);
-            getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, smsContentObserver);
         }
+        getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, smsContentObserver);
     }
 
     /**

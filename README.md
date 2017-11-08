@@ -33,3 +33,7 @@ ShareSDk的分享以及发送短信
              }
          };
          SMSSDK.registerEventHandler(mEventHandler);
+
+###  读取短信的功能
+     参考：http://www.jianshu.com/p/336f171e7e99的代码
+     不过不能对全部的手机的进行读取,不知怎么处理
