@@ -1,5 +1,6 @@
 # MobShare
 ShareSDk的分享以及发送短信
+博客地址:http://www.cnblogs.com/wangfengdange/p/7800146.html
 
 ### ShareSDk分享
     http://wiki.mob.com/%e5%88%86%e4%ba%ab%e5%88%b0%e6%8c%87%e5%ae%9a%e5%b9%b3%e5%8f%b0/
